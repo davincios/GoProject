@@ -1,7 +1,12 @@
-package main 
+package main
 
 import "fmt"
 
 func main() {
-	fmt.Printf("hello, world\n")
+	x := 15
+	a := &x // memory address
+	fmt.Println(a)
+	fmt.Println(*a)
+	*a = 5
+	fmt.Println(x)
 }
