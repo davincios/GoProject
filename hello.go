@@ -1,20 +1,21 @@
 package main
 
-import (
-	"fmt"
-	"net/http"
-)
+import "fmt"
 
-func index_handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Whoa, Go is neat!")
-}
+// Notes
+// Structs are the same as classes.
 
-func about_handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Expert web design stuff by davincio")
+type car struct {
+	gas_pedal      uint16 // min 0 max 65535
+	break_pedal    uint16
+	steering_wheel int16
+	top_speed_kmh  float64
 }
 
 func main() {
-	http.HandleFunc("/", index_handler)
-	http.HandleFunc("/about/", about_handler)
-	http.ListenAndServe(":8000", nil)
+	a_car := car{gas_pedal: 2214,
+		break_pedal:    0,
+		steering_wheel: 12561,
+		top_speed_kmh:  225.0}
+	fmt.Println(a_car.gas_pedal)
 }
