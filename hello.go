@@ -1,15 +1,19 @@
 package main
 
-import (
-	"fmt"
-	"net/http"
-)
+import "fmt"
 
-func index_handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, `<h1>Check if this works!</h1>`)
+func foo(c chan int, someValue int) {
+	c <- someValue * 5
 }
 
 func main() {
-	http.HandleFunc("/", index_handler)
-	http.ListenAndServe(":8000", nil)
+	fooVal := make(chan int)
+
+	go foo(fooVal, 5)
+	go foo(fooVal, 3)
+
+	v1, v2 := <-fooVal, <-fooVal
+
+	fmt.Println(v1, v2)
+
 }
