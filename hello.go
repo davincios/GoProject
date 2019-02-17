@@ -1,28 +1,20 @@
-// package main
+package main
 
-// import (
-// 	"fmt"
-// 	"sync"
-// )
+import (
+	"fmt"
+	"strings"
+)
 
-// var wg sync.WaitGroup
+func repeatStr(repetitions int, value string) string {
+	var answer []string
+	for i := 0; i < repetitions; i++ {
+		answer = append(answer, value)
+	}
+	fmt.Println(strings.Join(answer, ""))
+	return ""
+}
 
-// func foo(c chan int, someValue int) {
-// 	defer wg.Done()
-// 	c <- someValue * 5
-// }
-
-// func main() {
-// 	fooVal := make(chan int, 10)
-// 	for i := 0; i < 10; i++ {
-// 		wg.Add(1)
-// 		go foo(fooVal, i)
-// 	}
-// 	wg.Wait()
-// 	close(fooVal)
-
-// 	for item := range fooVal {
-// 		fmt.Println(item)
-// 	}
-
-// }
+func main() {
+	repeatStr(6, "I")     // "IIIIII"
+	repeatStr(5, "Hello") // "HelloHelloHelloHelloHello"
+}
